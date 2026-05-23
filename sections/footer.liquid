@@ -1,0 +1,129 @@
+<style>
+  .footer {
+    background: #080810;
+    border-top: 1px solid rgba(0,255,200,0.15);
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer__brand-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #00ffc8, #ff00aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .footer__brand-desc {
+    font-family: 'Rajdhani', sans-serif;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .footer__col-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer__links a:hover { color: #00ffc8; }
+
+  .footer__bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer__copyright {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.25);
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <span class="footer__brand-logo">{{ section.settings.logo_text | default: shop.name }}</span>
+      <p class="footer__brand-desc">{{ section.settings.description }}</p>
+    </div>
+
+    <div>
+      <div class="footer__col-title">{{ section.settings.col_1_title }}</div>
+      <ul class="footer__links">
+        {% for link in linklists[section.settings.col_1_menu].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer__col-title">{{ section.settings.col_2_title }}</div>
+      <ul class="footer__links">
+        {% for link in linklists[section.settings.col_2_menu].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__copyright">
+      &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo Text" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "La tienda de gadgets más innovadora de España." },
+    { "type": "text", "id": "col_1_title", "label": "Column 1 Title", "default": "Tienda" },
+    { "type": "link_list", "id": "col_1_menu", "label": "Column 1 Menu" },
+    { "type": "text", "id": "col_2_title", "label": "Column 2 Title", "default": "Ayuda" },
+    { "type": "link_list", "id": "col_2_menu", "label": "Column 2 Menu" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "badge_text": "Nuevos Gadgets 2025",
+        "title": "Next-Gen",
+        "title_highlight": "Tech Gear",
+        "description": "Descubre los últimos gadgets y tecnología a precios inmejorables.",
+        "btn_primary_label": "Comprar Ahora",
+        "btn_secondary_label": "Ver Ofertas",
+        "stat_1_number": "500+",
+        "stat_1_label": "Productos",
+        "stat_2_number": "50K+",
+        "stat_2_label": "Clientes",
+        "stat_3_number": "4.9★",
+        "stat_3_label": "Valoración"
+      }
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "tag": "Lo Más Popular",
+        "title": "Top",
+        "title_accent": "Gadgets",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": ["hero", "featured"]
+}

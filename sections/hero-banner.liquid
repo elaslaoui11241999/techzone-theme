@@ -1,0 +1,233 @@
+<style>
+  .hero {
+    min-height: 90vh;
+    background: #0a0a0f;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-drift 20s linear infinite;
+  }
+
+  @keyframes grid-drift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .hero__glow-1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,0,170,0.15) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .hero__glow-2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,255,200,0.12) 0%, transparent 70%);
+    bottom: -150px;
+    left: -100px;
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,255,200,0.1);
+    border: 1px solid rgba(0,255,200,0.3);
+    color: #00ffc8;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: #fff;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero__title .highlight {
+    display: block;
+    background: linear-gradient(90deg, #00ffc8, #ff00aa, #ffdd00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero__description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin: 0 0 2.5rem;
+    max-width: 600px;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, #00ffc8, #00aaff);
+    color: #0a0a0f;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(0,255,200,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(0,255,200,0.6);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255,0,170,0.5);
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: #ff00aa;
+    background: rgba(255,0,170,0.1);
+    color: #ff00aa;
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero__stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #fff;
+    display: block;
+  }
+
+  .hero__stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
+<section class="hero">
+  <div class="hero__grid-bg"></div>
+  <div class="hero__glow-1"></div>
+  <div class="hero__glow-2"></div>
+
+  <div class="hero__content">
+    <div class="hero__badge">{{ section.settings.badge_text }}</div>
+    <h1 class="hero__title">
+      {{ section.settings.title }}
+      <span class="highlight">{{ section.settings.title_highlight }}</span>
+    </h1>
+    <p class="hero__description">{{ section.settings.description }}</p>
+    <div class="hero__cta">
+      <a href="{{ section.settings.btn_primary_url }}" class="btn-primary">{{ section.settings.btn_primary_label }}</a>
+      <a href="{{ section.settings.btn_secondary_url }}" class="btn-secondary">{{ section.settings.btn_secondary_label }}</a>
+    </div>
+    <div class="hero__stats">
+      <div>
+        <span class="hero__stat-number">{{ section.settings.stat_1_number }}</span>
+        <span class="hero__stat-label">{{ section.settings.stat_1_label }}</span>
+      </div>
+      <div>
+        <span class="hero__stat-number">{{ section.settings.stat_2_number }}</span>
+        <span class="hero__stat-label">{{ section.settings.stat_2_label }}</span>
+      </div>
+      <div>
+        <span class="hero__stat-number">{{ section.settings.stat_3_number }}</span>
+        <span class="hero__stat-label">{{ section.settings.stat_3_label }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "Nuevos Gadgets 2025" },
+    { "type": "text", "id": "title", "label": "Title Line 1", "default": "Next-Gen" },
+    { "type": "text", "id": "title_highlight", "label": "Title Highlight", "default": "Tech Gear" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Descubre los últimos gadgets y tecnología a precios inmejorables." },
+    { "type": "text", "id": "btn_primary_label", "label": "Primary Button", "default": "Comprar Ahora" },
+    { "type": "url", "id": "btn_primary_url", "label": "Primary Button URL" },
+    { "type": "text", "id": "btn_secondary_label", "label": "Secondary Button", "default": "Ver Ofertas" },
+    { "type": "url", "id": "btn_secondary_url", "label": "Secondary Button URL" },
+    { "type": "text", "id": "stat_1_number", "label": "Stat 1 Number", "default": "500+" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 Label", "default": "Productos" },
+    { "type": "text", "id": "stat_2_number", "label": "Stat 2 Number", "default": "50K+" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 Label", "default": "Clientes" },
+    { "type": "text", "id": "stat_3_number", "label": "Stat 3 Number", "default": "4.9★" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 Label", "default": "Valoración" }
+  ],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}

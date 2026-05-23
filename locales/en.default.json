@@ -1,0 +1,19 @@
+{
+  "general": {
+    "search": "Search"
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "add_to_cart": "Add to cart"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out"
+    }
+  }
+}

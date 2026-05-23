@@ -1,0 +1,14 @@
+{% if request.page_type == 'index' %}
+  {% assign og_title = shop.name %}
+  {% assign og_type = 'website' %}
+{% elsif request.page_type == 'product' %}
+  {% assign og_title = product.title %}
+  {% assign og_type = 'product' %}
+{% else %}
+  {% assign og_title = page_title | default: shop.name %}
+  {% assign og_type = 'website' %}
+{% endif %}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
