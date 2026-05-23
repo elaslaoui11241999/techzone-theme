@@ -1,104 +1,128 @@
 <style>
-  .footer {
-    background: #080810;
-    border-top: 1px solid rgba(0,255,200,0.15);
-    padding: 4rem 2rem 2rem;
-  }
-
-  .footer__inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .footer__brand-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 1.5rem;
-    background: linear-gradient(90deg, #00ffc8, #ff00aa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .footer__brand-desc {
-    font-family: 'Rajdhani', sans-serif;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .footer__col-title {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #fff;
-    margin-bottom: 1.25rem;
-  }
-
-  .footer__links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .footer__links a {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer__links a:hover { color: #00ffc8; }
-
-  .footer__bottom {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
+  .urgency {
+    background: #111;
+    padding: 40px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 24px;
   }
+  .urg-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #f0a500; margin-bottom: 10px; font-family: 'Rajdhani', sans-serif; }
+  .urg-title { font-size: 24px; font-weight: 400; color: #fff; margin-bottom: 6px; font-family: 'Rajdhani', sans-serif; }
+  .urg-sub { font-size: 13px; color: #666; font-family: 'Rajdhani', sans-serif; }
+  .timer { display: flex; gap: 16px; align-items: center; }
+  .timer-block { text-align: center; background: #1a1a1a; padding: 16px 20px; border: 1px solid #333; }
+  .timer-num { font-size: 28px; font-weight: 500; color: #f0a500; display: block; font-family: 'Rajdhani', sans-serif; }
+  .timer-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; display: block; margin-top: 4px; font-family: 'Rajdhani', sans-serif; }
+  .timer-sep { font-size: 24px; color: #333; }
 
-  .footer__copyright {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.25);
+  .why { padding: 60px 48px; background: #fafafa; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
+  .why-card { text-align: center; padding: 32px 24px; background: #fff; border: 1px solid #ebebeb; }
+  .why-icon { width: 56px; height: 56px; background: #f0a500; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; }
+  .why-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; font-family: 'Rajdhani', sans-serif; }
+  .why-desc { font-size: 13px; color: #888; line-height: 1.7; font-family: 'Rajdhani', sans-serif; }
+
+  .reviews { padding: 60px 48px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .rc { background: #fafafa; border: 1px solid #ebebeb; padding: 24px; }
+  .r-stars { color: #f0a500; font-size: 14px; margin-bottom: 12px; }
+  .r-text { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 16px; font-style: italic; font-family: 'Rajdhani', sans-serif; }
+  .r-author { display: flex; align-items: center; gap: 10px; }
+  .r-av { width: 36px; height: 36px; border-radius: 50%; background: #f0a500; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; flex-shrink: 0; font-family: 'Rajdhani', sans-serif; }
+  .r-name { font-size: 13px; font-weight: 600; font-family: 'Rajdhani', sans-serif; }
+  .r-date { font-size: 11px; color: #bbb; font-family: 'Rajdhani', sans-serif; }
+
+  .newsletter { background: #f0a500; padding: 60px 48px; text-align: center; }
+  .nl-title { font-size: 28px; font-weight: 400; color: #111; margin-bottom: 10px; font-family: 'Rajdhani', sans-serif; }
+  .nl-sub { font-size: 14px; color: rgba(0,0,0,0.6); margin-bottom: 28px; font-family: 'Rajdhani', sans-serif; }
+  .nl-form { display: flex; max-width: 480px; margin: 0 auto; }
+  .nl-input { flex: 1; padding: 14px 20px; border: none; font-size: 13px; outline: none; font-family: 'Rajdhani', sans-serif; }
+  .nl-btn { background: #111; color: #fff; padding: 14px 24px; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Rajdhani', sans-serif; }
+
+  .footer { background: #111; padding: 48px 48px 24px; }
+  .footer__inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer__logo-flash { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 2px; font-family: 'Rajdhani', sans-serif; }
+  .footer__logo-volt { font-size: 13px; color: #f0a500; letter-spacing: 4px; margin-bottom: 14px; font-family: 'Rajdhani', sans-serif; }
+  .footer__desc { font-size: 12px; color: #555; line-height: 1.9; font-family: 'Rajdhani', sans-serif; }
+  .footer__col-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 16px; font-family: 'Rajdhani', sans-serif; }
+  .footer__links { list-style: none; padding: 0; margin: 0; }
+  .footer__links a { display: block; font-size: 12px; color: #555; text-decoration: none; margin-bottom: 9px; font-family: 'Rajdhani', sans-serif; transition: color 0.2s; }
+  .footer__links a:hover { color: #f0a500; }
+  .footer__bottom { padding-top: 22px; border-top: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer__copy { font-size: 11px; color: #333; font-family: 'Rajdhani', sans-serif; }
+
+  @media (max-width: 768px) {
+    .urgency { flex-direction: column; text-align: center; padding: 32px 24px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer__inner { grid-template-columns: 1fr; }
+    .fp-grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<div class="urgency">
+  <div>
+    <div class="urg-label">{{ section.settings.offer_label }}</div>
+    <div class="urg-title">{{ section.settings.offer_title }}</div>
+    <div class="urg-sub">{{ section.settings.offer_sub }}</div>
+  </div>
+  <div class="timer">
+    <div class="timer-block"><span class="timer-num" id="fv-h">08</span><span class="timer-label">Horas</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-block"><span class="timer-num" id="fv-m">34</span><span class="timer-label">Minutos</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-block"><span class="timer-num" id="fv-s">21</span><span class="timer-label">Segundos</span></div>
+  </div>
+</div>
+
+<div class="why">
+  <div style="margin-bottom:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#f0a500;font-family:'Rajdhani',sans-serif;">Nuestra promesa</div>
+  <div style="font-size:26px;font-weight:400;font-family:'Rajdhani',sans-serif;">¿Por qué elegirnos?</div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🏆</div><div class="why-title">Calidad garantizada</div><div class="why-desc">Todos nuestros productos pasan controles de calidad estrictos antes de llegar a ti.</div></div>
+    <div class="why-card"><div class="why-icon">🌍</div><div class="why-title">Envíos a Europa</div><div class="why-desc">Enviamos a más de 20 países europeos con seguimiento en tiempo real.</div></div>
+    <div class="why-card"><div class="why-icon">❤️</div><div class="why-title">Clientes satisfechos</div><div class="why-desc">Más de 5.000 clientes felices con una valoración media de 4.8 estrellas.</div></div>
+  </div>
+</div>
+
+<div class="reviews">
+  <div style="margin-bottom:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#f0a500;font-family:'Rajdhani',sans-serif;">Opiniones</div>
+  <div style="font-size:26px;font-weight:400;font-family:'Rajdhani',sans-serif;">Lo que dicen nuestros clientes</div>
+  <div class="reviews-grid">
+    <div class="rc"><div class="r-stars">★★★★★</div><div class="r-text">"La tira LED es increíble, la calidad es mucho mejor de lo que esperaba. La instalé en el salón y queda espectacular."</div><div class="r-author"><div class="r-av">MG</div><div><div class="r-name">María G.</div><div class="r-date">Madrid · hace 2 semanas</div></div></div></div>
+    <div class="rc"><div class="r-stars">★★★★★</div><div class="r-text">"El aplique nórdico llegó perfectamente embalado. La instalación fue muy fácil y la calidad del metal es excelente."</div><div class="r-author"><div class="r-av">JR</div><div><div class="r-name">Juan R.</div><div class="r-date">Barcelona · hace 1 mes</div></div></div></div>
+    <div class="rc"><div class="r-stars">★★★★☆</div><div class="r-text">"El detector de voltaje funciona perfectamente. Muy útil para el trabajo. El envío tardó 10 días, dentro del plazo."</div><div class="r-author"><div class="r-av">PL</div><div><div class="r-name">Pedro L.</div><div class="r-date">Valencia · hace 3 semanas</div></div></div></div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <div class="nl-title">{{ section.settings.nl_title }}</div>
+  <div class="nl-sub">{{ section.settings.nl_sub }}</div>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="Tu email aquí...">
+    <button class="nl-btn">Suscribirme</button>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer__inner">
     <div>
-      <span class="footer__brand-logo">{{ section.settings.logo_text | default: shop.name }}</span>
-      <p class="footer__brand-desc">{{ section.settings.description }}</p>
+      <div class="footer__logo-flash">FLASHVOLT</div>
+      <div class="footer__logo-volt">VOLT</div>
+      <div class="footer__desc">{{ section.settings.description }}</div>
     </div>
-
     <div>
-      <div class="footer__col-title">{{ section.settings.col_1_title }}</div>
+      <div class="footer__col-title">Tienda</div>
       <ul class="footer__links">
         {% for link in linklists[section.settings.col_1_menu].links %}
           <li><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
       </ul>
     </div>
-
     <div>
-      <div class="footer__col-title">{{ section.settings.col_2_title }}</div>
+      <div class="footer__col-title">Ayuda</div>
       <ul class="footer__links">
         {% for link in linklists[section.settings.col_2_menu].links %}
           <li><a href="{{ link.url }}">{{ link.title }}</a></li>
@@ -106,24 +130,35 @@
       </ul>
     </div>
   </div>
-
   <div class="footer__bottom">
-    <p class="footer__copyright">
-      &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.
-    </p>
+    <div class="footer__copy">&copy; {{ 'now' | date: '%Y' }} FLASHVOLT. Todos los derechos reservados.</div>
   </div>
 </footer>
+
+<script>
+  let fvTotal = 8*3600+34*60+21;
+  setInterval(function(){
+    if(fvTotal<=0)return;
+    fvTotal--;
+    const h=Math.floor(fvTotal/3600),m=Math.floor((fvTotal%3600)/60),s=fvTotal%60;
+    document.getElementById('fv-h').textContent=String(h).padStart(2,'0');
+    document.getElementById('fv-m').textContent=String(m).padStart(2,'0');
+    document.getElementById('fv-s').textContent=String(s).padStart(2,'0');
+  },1000);
+</script>
 
 {% schema %}
 {
   "name": "Footer",
   "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo Text" },
-    { "type": "textarea", "id": "description", "label": "Description", "default": "La tienda de gadgets más innovadora de España." },
-    { "type": "text", "id": "col_1_title", "label": "Column 1 Title", "default": "Tienda" },
-    { "type": "link_list", "id": "col_1_menu", "label": "Column 1 Menu" },
-    { "type": "text", "id": "col_2_title", "label": "Column 2 Title", "default": "Ayuda" },
-    { "type": "link_list", "id": "col_2_menu", "label": "Column 2 Menu" }
+    { "type": "text", "id": "offer_label", "label": "Etiqueta oferta", "default": "Oferta especial" },
+    { "type": "text", "id": "offer_title", "label": "Título oferta", "default": "10% de descuento hoy" },
+    { "type": "text", "id": "offer_sub", "label": "Subtítulo oferta", "default": "Usa el código FLASH10 al pagar" },
+    { "type": "text", "id": "nl_title", "label": "Título newsletter", "default": "10% de descuento en tu primer pedido" },
+    { "type": "text", "id": "nl_sub", "label": "Subtítulo newsletter", "default": "Suscríbete y recibe ofertas exclusivas en tu email" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Iluminación y herramientas eléctricas de calidad. Envíos a toda Europa desde España." },
+    { "type": "link_list", "id": "col_1_menu", "label": "Menú columna 1" },
+    { "type": "link_list", "id": "col_2_menu", "label": "Menú columna 2" }
   ]
 }
 {% endschema %}

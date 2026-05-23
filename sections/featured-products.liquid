@@ -1,172 +1,73 @@
 <style>
-  .featured-products {
-    background: #0a0a0f;
-    padding: 6rem 2rem;
-  }
+  .fp { padding: 60px 48px; background: #fff; }
+  .fp-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+  .fp-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #f0a500; margin-bottom: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 600; }
+  .fp-title { font-size: 26px; font-weight: 400; color: #111; font-family: 'Rajdhani', sans-serif; }
+  .fp-all { font-size: 12px; color: #bbb; text-decoration: underline; cursor: pointer; font-family: 'Rajdhani', sans-serif; }
+  .fp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; }
 
-  .section-header {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 4rem;
-  }
+  .fp-card { cursor: pointer; }
+  .fp-img { height: 220px; overflow: hidden; position: relative; margin-bottom: 16px; background: #f7f7f5; }
+  .fp-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .fp-card:hover .fp-img img { transform: scale(1.05); }
 
-  .section-tag {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #ff00aa;
-    display: block;
-    margin-bottom: 0.75rem;
-  }
+  .fp-badge { position: absolute; top: 12px; left: 12px; background: #111; color: #fff; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 9px; font-family: 'Rajdhani', sans-serif; }
+  .fp-stock { position: absolute; top: 12px; right: 12px; background: #e74c3c; color: #fff; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 9px; font-family: 'Rajdhani', sans-serif; }
 
-  .section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    color: #fff;
-    margin: 0 0 1rem;
-  }
-
-  .section-title span { color: #00ffc8; }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .product-card {
-    background: #12121a;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-
-  .product-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0,255,200,0.3);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-
-  .product-card__image {
-    position: relative;
-    padding-top: 75%;
-    background: #1a1a25;
-    overflow: hidden;
-  }
-
-  .product-card__image img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 1.5rem;
-    transition: transform 0.5s ease;
-  }
-
-  .product-card:hover .product-card__image img {
-    transform: scale(1.05);
-  }
-
-  .product-card__body { padding: 1.25rem; }
-
-  .product-card__category {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #ff00aa;
-    margin-bottom: 0.4rem;
-  }
-
-  .product-card__title {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: #fff;
-    margin: 0 0 0.75rem;
-    line-height: 1.4;
-  }
-
-  .product-card__title a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .product-card__title a:hover { color: #00ffc8; }
-
-  .product-card__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .product-card__price {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #00ffc8;
-  }
-
-  .view-all-wrap {
-    text-align: center;
-    margin-top: 3.5rem;
-  }
+  .fp-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #ccc; margin-bottom: 5px; font-family: 'Rajdhani', sans-serif; }
+  .fp-name { font-size: 14px; color: #111; line-height: 1.5; margin-bottom: 8px; font-family: 'Rajdhani', sans-serif; }
+  .fp-stars { color: #f0a500; font-size: 12px; margin-bottom: 8px; }
+  .fp-foot { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #f0f0f0; padding-top: 12px; }
+  .fp-price { font-size: 16px; font-weight: 600; color: #111; font-family: 'Rajdhani', sans-serif; }
+  .fp-add { font-size: 11px; color: #aaa; text-decoration: underline; cursor: pointer; font-family: 'Rajdhani', sans-serif; }
+  .fp-add:hover { color: #f0a500; }
 </style>
 
-<section class="featured-products">
-  <div class="section-header">
-    <span class="section-tag">{{ section.settings.tag }}</span>
-    <h2 class="section-title">{{ section.settings.title }} <span>{{ section.settings.title_accent }}</span></h2>
+<section class="fp">
+  <div class="fp-head">
+    <div>
+      <div class="fp-label">{{ section.settings.tag }}</div>
+      <div class="fp-title">{{ section.settings.title }}</div>
+    </div>
+    {% if section.settings.show_view_all %}
+      <a href="{{ collections[section.settings.collection].url }}" class="fp-all">Ver todos →</a>
+    {% endif %}
   </div>
 
-  <div class="products-grid">
-    {% assign collection = collections[section.settings.collection] %}
-    {% for product in collection.products limit: section.settings.products_to_show %}
-      <div class="product-card">
-        <div class="product-card__image">
+  <div class="fp-grid">
+    {% assign col = collections[section.settings.collection] %}
+    {% for product in col.products limit: section.settings.products_to_show %}
+      <div class="fp-card">
+        <div class="fp-img">
           {% if product.featured_image %}
             <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title | escape }}" loading="lazy">
           {% endif %}
+          {% if forloop.first %}
+            <div class="fp-badge">Más vendido</div>
+            <div class="fp-stock">Solo quedan 5</div>
+          {% endif %}
         </div>
-        <div class="product-card__body">
-          <div class="product-card__category">{{ product.type | default: 'Gadget' }}</div>
-          <h3 class="product-card__title">
-            <a href="{{ product.url }}">{{ product.title }}</a>
-          </h3>
-          <div class="product-card__footer">
-            <div class="product-card__price">{{ product.price | money }}</div>
-          </div>
+        <div class="fp-cat">{{ product.type | default: 'Producto' }}</div>
+        <div class="fp-name">{{ product.title }}</div>
+        <div class="fp-stars">★★★★★</div>
+        <div class="fp-foot">
+          <div class="fp-price">{{ product.price | money }}</div>
+          <a href="{{ product.url }}" class="fp-add">Ver producto →</a>
         </div>
       </div>
     {% endfor %}
   </div>
-
-  {% if section.settings.show_view_all %}
-    <div class="view-all-wrap">
-      <a href="{{ collections[section.settings.collection].url }}" class="btn-primary">Ver Todos</a>
-    </div>
-  {% endif %}
 </section>
 
 {% schema %}
 {
   "name": "Featured Products",
   "settings": [
-    { "type": "text", "id": "tag", "label": "Tag", "default": "Lo Más Popular" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Top" },
-    { "type": "text", "id": "title_accent", "label": "Title Accent", "default": "Gadgets" },
-    { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "products_to_show", "label": "Products to Show", "min": 4, "max": 12, "step": 2, "default": 8 },
-    { "type": "checkbox", "id": "show_view_all", "label": "Show View All", "default": true }
+    { "type": "text", "id": "tag", "label": "Etiqueta", "default": "Catálogo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Nuestros productos" },
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "range", "id": "products_to_show", "label": "Productos a mostrar", "min": 3, "max": 12, "step": 1, "default": 6 },
+    { "type": "checkbox", "id": "show_view_all", "label": "Mostrar Ver todos", "default": true }
   ],
   "presets": [{ "name": "Featured Products" }]
 }

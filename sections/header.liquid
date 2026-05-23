@@ -1,113 +1,154 @@
 <style>
+  .topbar {
+    background: #111;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .topbar em { color: #f0a500; font-style: normal; }
+
   .header {
-    background: rgba(10, 10, 15, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 255, 200, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 18px 48px;
+    border-bottom: 1px solid #ebebeb;
+    background: #fff;
+    gap: 40px;
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 0 2rem;
-  }
-
-  .header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-    height: 70px;
   }
 
   .header__logo {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
     text-decoration: none;
-    background: linear-gradient(90deg, #00ffc8, #ff00aa, #ffdd00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  }
+
+  .header__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .header__logo-flash {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    border-bottom: 3px solid #f0a500;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .header__logo-volt {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0a500;
+    letter-spacing: 5px;
+    font-family: 'Rajdhani', sans-serif;
   }
 
   .header__nav {
     display: flex;
-    gap: 2rem;
+    gap: 28px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   .header__nav a {
+    font-size: 12px;
+    color: #444;
+    text-decoration: none;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
-    font-size: 0.95rem;
-    color: #ccc;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: color 0.2s;
   }
 
-  .header__nav a:hover {
-    color: #00ffc8;
-  }
+  .header__nav a:hover { color: #111; }
 
   .header__icons {
     display: flex;
+    gap: 20px;
+    margin-left: auto;
     align-items: center;
-    gap: 1rem;
   }
 
   .header__icon-btn {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ccc;
-    font-size: 1.2rem;
-    transition: color 0.2s;
+    color: #222;
+    font-size: 1.1rem;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 600;
+    transition: color 0.2s;
   }
 
-  .header__icon-btn:hover { color: #ff00aa; }
+  .header__icon-btn:hover { color: #f0a500; }
 
   .cart-count {
-    background: linear-gradient(135deg, #ff00aa, #ffdd00);
-    color: #0a0a0f;
+    background: #f0a500;
+    color: #111;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
-    font-weight: 900;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .header__nav { display: none; }
+    .header { padding: 14px 20px; }
+    .topbar { font-size: 10px; }
   }
 </style>
 
+<div class="topbar">
+  ⚡ {{ section.settings.topbar_text }}
+</div>
+
 <header class="header" role="banner">
-  <div class="header__inner">
-    <a href="{{ routes.root_url }}" class="header__logo">
-      {{ section.settings.logo_text | default: shop.name }}
-    </a>
-    <nav>
-      <ul class="header__nav">
-        {% for link in linklists[section.settings.menu].links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-    <div class="header__icons">
-      <a href="{{ routes.cart_url }}" class="header__icon-btn">
-        🛒 <span class="cart-count">{{ cart.item_count }}</span>
-      </a>
+  <a href="{{ routes.root_url }}" class="header__logo">
+    <svg width="32" height="38" viewBox="0 0 44 50" fill="none">
+      <polygon points="26,0 8,28 20,28 14,50 36,18 24,18" fill="#f0a500"/>
+    </svg>
+    <div class="header__logo-text">
+      <span class="header__logo-flash">FLASH</span>
+      <span class="header__logo-volt">VOLT</span>
     </div>
+  </a>
+
+  <nav>
+    <ul class="header__nav">
+      {% for link in linklists[section.settings.menu].links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="header__icons">
+    <a href="{{ routes.search_url }}" class="header__icon-btn" aria-label="Buscar">🔍</a>
+    <a href="{{ routes.account_url }}" class="header__icon-btn" aria-label="Cuenta">👤</a>
+    <a href="{{ routes.cart_url }}" class="header__icon-btn" aria-label="Carrito">
+      🛍️
+      <span class="cart-count">{{ cart.item_count }}</span>
+    </a>
   </div>
 </header>
 
@@ -115,8 +156,8 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo Text", "default": "TECHZONE" },
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+    { "type": "text", "id": "topbar_text", "label": "Texto barra superior", "default": "Envío gratis en pedidos +50€ — Iluminación y herramientas al mejor precio" },
+    { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" }
   ]
 }
 {% endschema %}
